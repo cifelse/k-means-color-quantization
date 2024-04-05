@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<title>k-means Image Color Quantization</title> 
-<link rel="stylesheet" type="text/css" href="styles.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+    <head>
+        <title>k-means Image Color Quantization</title> 
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <div>
+            <h1 id="header"><span class="blue-text"><em>k</em>-means&nbsp;</span>Image Color Quantization</h1>
+        </div>
 
-<body>
-<div>
-    <h1 id="header"><span class="blue-text"><em>k</em>-means&nbsp;</span>Image Color Quantization</h1>
-</div>
-
-<div id="input-output">
-    <div class="column">
-        <h2 class="padding-r2em">Input Image</h2>
+        <div id="input-output">
+            <div class="column">
+                <h2 class="padding-r2em">Input Image</h2>
 
         <h2>k = </h2> 
         <input type="number" id="kInput" value=2 max="256" min="256" maxlength="3"> <!--default value is 2-->
         <span class="column tip padding-r2em">Enter a number (2-256)</span>
 
-        <button id="quantize">QUANTIZE</button>
+                <button id="quantize">QUANTIZE</button>
 
 
-        <div class="image-box">Input</div>
-    </div>
-    <div class="column">
-        <h2><b>Quantized Image</h2></b>
-        <div class="image-box">Output</div>
-    </div>
-</div>
-
-<script src="backend.js"></script>
-</body>
+                <div class="image-box">Input</div>
+            </div>
+            <div class="column">
+                <h2><b>Quantized Image</h2></b>
+                <div class="image-box">Output</div>
+            </div>
+        </div>
+        <script src="backend.js"></script>
+    </body>
 </html>
