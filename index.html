@@ -19,16 +19,32 @@
         <input type="number" id="kInput" value=2 max="256" min="256" maxlength="3"> <!--default value is 2-->
         <span class="column tip padding-r2em">Enter a number (2-256)</span>
 
-                <button id="quantize">QUANTIZE</button>
+        <button id="quantize" class="disabled" disabled>QUANTIZE</button>
 
 
-                <div class="image-box">Input</div>
-            </div>
-            <div class="column">
-                <h2><b>Quantized Image</h2></b>
-                <div class="image-box">Output</div>
-            </div>
+        <div class="image-box pos-relative">
+            <input id="input-file" type="file" accept="image/gif,image/jpeg,image/png,image/svg+xml">
+            <p id="input-tip" class="tip text-center">
+                Click here to upload an image (<em>gif, jpeg, png</em>, or <em>svg</em>). <br/>
+                Once uploaded, click the <em>QUANTIZE</em> button.
+            </p>
+            <image id="input-display" hidden src=""></image>
         </div>
-        <script src="backend.js"></script>
-    </body>
+    </div>
+    <div class="column">
+        <h2 class="padding-r2em"><b>Quantized Image</h2></b>
+
+        <button id="save" class="disabled" disabled>SAVE IMAGE</button>
+
+        <div class="image-box">
+            <p id="output-tip" class="tip text-center">
+                Quantized output image will show up here.
+            </p>
+            <image id="output-display" hidden src=""></image>
+        </div>
+    </div>
+</div>
+
+<script src="backend.js"></script>
+</body>
 </html>
