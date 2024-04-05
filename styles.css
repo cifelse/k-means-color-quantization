@@ -92,6 +92,22 @@ body {
     width: 4em;
 }
 
+#quantize {
+  background-color: #0288d1;
+  color: #fefefe;
+  font-weight: bold;
+  border: none;
+  padding: 1em;
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
+#quantize:hover {
+  /* Optional: Change button color on hover */
+  background-color: #225ea8;
+  cursor: pointer;
+}
+
 .column {
     flex: 1;
     padding: 10px;
