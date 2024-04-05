@@ -1,0 +1,123 @@
+#modal {
+    z-index: 1;
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+  }
+  
+  /* Modal border */
+  #modal_inner {
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    left: 40px;
+    right: 40px;
+  }
+  
+  /* No modal border on smaller screens */
+  @media only screen and (max-width: 700px){
+    #modal_inner {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+  
+  #quantized_img {
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    max-width: 100%;
+    max-height: 100%;
+    cursor: auto;
+  }
+  
+  #close {
+    z-index: 3;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    top: 15px;
+    left: 35px;
+    color: #f1f1f1;
+    font-size: 60px;
+    text-shadow:  1px  1px 0 rgba(0, 0, 0, 0.9),
+                  1px -1px 0 rgba(0, 0, 0, 0.9),
+                 -1px  1px 0 rgba(0, 0, 0, 0.9),
+                 -1px -1px 0 rgba(0, 0, 0, 0.9);
+  }
+  
+  #close:hover, #close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #fefefe; 
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2em;
+}
+
+#input-output {
+    width: 90%;
+    display: flex;
+    padding: 0.5em;
+    margin: 0 auto;
+}
+
+#kInput {
+    height: 24px;
+    font-size: 20px;
+    width: 4em;
+}
+
+.column {
+    flex: 1;
+    padding: 10px;
+}
+
+.column h2 {
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+}
+
+.image-box {
+    border: 1px solid;
+    border-color: grey;
+}
+
+.blue-text {
+    color: #0288d1;
+}
+
+.padding-r2em {
+    padding-right: 2em;
+}
+  
+.tip {
+    font-style: italic;
+    color: grey;
+}
