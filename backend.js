@@ -1,16 +1,81 @@
+// checks if k is within range
 const numberInput = document.getElementById('kInput');
+const quantize_btn =  document.getElementById("quantize");
+const save_btn = document.getElementById('save');
+const file_input_btn = document.getElementById("input-file");
+const input_display = document.getElementById("input-display");
+const input_tip = document.getElementById("input-tip");
+const output_display = document.getElementById("output-display");
+const output_tip = document.getElementById("output-tip");
+
+var file;
 
 numberInput.addEventListener('change', function(event) {
     const inputValue = event.target.value;
     
-    if (inputValue < 2 || inputValue > 256) {
+    if (inputValue < 2) {
         event.target.value = 2;
+    }
+    else if (inputValue > 256) {
+        event.target.value = 256;
     }
 });
 
+// Enable the quantize button if a file has been selected, and
+// disable otherwise.
+file_input_btn.addEventListener('input', function() {
+    file = file_input_btn.files[0];
 
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            input_display.src = e.target.result;
+            input_display.hidden = false;
+            input_tip.hidden = true;
+        };
+        reader.readAsDataURL(file);
+        
+        enable_quantize();
+        
+    } else {
+        input_display.src = "";
+        input_display.hidden = true;
+        input_tip.hidden = false;
 
+        disable_quantize();
+    }
+});
 
+var enable_quantize = function () {
+    quantize_btn.classList.remove('disabled');
+    quantize_btn.classList.add('blue-button');
+    quantize_btn.disabled = false;
+}
+
+var disable_quantize = function () {
+    quantize_btn.classList.add('disabled');
+    quantize_btn.classList.remove('blue-button');
+    quantize_btn.disabled = true;
+}
+
+var loading_output = function () {
+    output_display.src = '';
+    output_display.hidden = true;
+    output_tip.hidden = false;
+
+    save_btn.classList.add('disabled');
+    save_btn.classList.remove('blue-button');
+    save_btn.disabled = true;
+}
+
+var show_output = function () {
+    output_display.hidden = false;
+    output_tip.hidden = true;
+
+    save_btn.classList.remove('disabled');
+    save_btn.classList.add('blue-button');
+    save_btn.disabled = false;
+}
 
 /* 
 *    k-means Algorithm below 
@@ -206,3 +271,42 @@ var quantize = function(img, colors) {
   data_url = quantized_canvas.toDataURL();
   return data_url;
 };
+
+
+quantize_btn.addEventListener("click", function() {
+    if (!file) return;
+    // var quantized_img = document.getElementById("quantized_img");
+
+    var reader = new FileReader();
+    reader.addEventListener("load", function() {
+        var k = parseInt(numberInput.value);
+        console.log("K: ", k)
+        var img = new Image();
+
+        img.onload = function() {
+        requestAnimationFrame(function() {
+            setTimeout(function() {
+            // Use a fixed maximum so that k-means works fast.
+            var pixel_dataset = get_pixel_dataset(img, MAX_K_MEANS_PIXELS);
+            var centroids = k_means(pixel_dataset, k);
+            var data_url = quantize(img, centroids);
+            output_display.src = data_url;
+            show_output();
+            enable_quantize();
+            }, 0);
+        });
+        disable_quantize();
+        loading_output();
+        };
+        img.src = reader.result;
+    });
+    reader.readAsDataURL(file);
+});
+
+save_btn.addEventListener('click', function() {
+    var image = document.getElementById('output-display');
+    var link = document.createElement('a');
+    link.href = image.src;
+    link.download = 'quantized_image.jpg';
+    link.click();
+});
